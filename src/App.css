@@ -1,0 +1,16 @@
+body{
+  font-family: Arial;
+}
+
+.card-collection{
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+}
+
+.standout{
+   box-shadow: 1px 1px 5px black; 
+}
+
+h1,h2,h3,h4,h5,p{
+  text-align: center;
+}
