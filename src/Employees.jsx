@@ -1,5 +1,5 @@
-import femaleProfile from './images/femaleProfile.jpg';
-import maleProfile from './images/maleProfile.jpg';
+import maleProfile from './images/male_6.jpg';
+import femaleProfile from './images/female_2.jpg';
 
 const Employees = ({ employees, team, handleChange, handleClick }) => {
   return (
@@ -19,9 +19,14 @@ const Employees = ({ employees, team, handleChange, handleClick }) => {
           <div className='card-collection'>
           {
             employees.map((emp) => (
-              <div id={emp.id} className={(emp.teamName === team?'card m-2 standout':'card m-2')} 
-                style={{cursor: 'pointer'}} onClick={handleClick}>
-                {(emp.gender === 'male')?<img src={maleProfile} alt='maleProfile' className='card-img-top'/>
+              <div key={emp.id} id={emp.id} 
+                className={(emp.teamName === team?'card m-2 standout':'card m-2')} 
+                style={{cursor: 'pointer'}} 
+                onClick={handleClick}>
+              
+                {
+                  (emp.gender === 'male')
+                  ?<img src={maleProfile} alt='maleProfile' className='card-img-top'/>
                   :<img src={femaleProfile} alt='femaleProfile' className='card-img-top'/>
                 }
                 
@@ -40,5 +45,6 @@ const Employees = ({ employees, team, handleChange, handleClick }) => {
     </main>
   )
 }
+
 
 export default Employees;

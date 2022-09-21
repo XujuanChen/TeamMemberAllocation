@@ -1,0 +1,8 @@
+import maleProfile from './images/male_1.jpg';
+import femaleProfile from './images/female_2.jpg';
+
+{
+  (emp.gender === 'male')
+  ?<img src={maleProfile} alt='maleProfile' className='card-img-top'/>
+  :<img src={femaleProfile} alt='femaleProfile' className='card-img-top'/>
+}
