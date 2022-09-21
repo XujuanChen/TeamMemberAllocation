@@ -6,3 +6,74 @@ import femaleProfile from './images/female_2.jpg';
   ?<img src={maleProfile} alt='maleProfile' className='card-img-top'/>
   :<img src={femaleProfile} alt='femaleProfile' className='card-img-top'/>
 }
+
+
+        <div id={"collapse_"+item.teamNo} className={item.collapsed === true? "collapse":""}>
+          {
+            item.members.map(member=>{
+              return(
+                <div className='mt-2'>
+                  <h5 className='card-title mt-2'>
+                    <span className='text-dark'>Full Name: {member.fullName}</span>
+                  </h5>
+                  <p>Designation: {member.designation}</p>
+                </div>
+              )
+            })
+          }
+        </div>
+
+      <div key={item.teamNo} className='card mt-2' style={{cursor: 'pointer'}}>
+        <h4 id={item.teamNo} className='card-header text-secondary bg-white' 
+          onClick={handleTeamClick}>
+          Team Name: {item.teamNo}
+        </h4>
+      </div>
+
+
+  const [group, setGroup] = useState(groupMembers);
+  const groupMembers = () => {
+    let teams = [];
+    
+    let teamAMembers = employees.filter((employee)=>employee.teamName === 'TeamA');
+    let teamA = {
+      teamNo: 'TeamA',
+      members: teamAMembers,
+      collapsed: team === 'TeamA'? false:true
+    }
+    teams.push(teamA);
+
+    let teamBMembers = employees.filter((employee)=>employee.teamName === 'TeamB');
+    let teamB = {
+      teamNo: 'TeamB',
+      members: teamBMembers,
+      collapsed: team === 'TeamB'? false:true
+    }
+    teams.push(teamB);
+
+    let teamCMembers = employees.filter((employee)=>employee.teamName === 'TteamC');
+    let teamC = {
+      teamNo: 'TeamC',
+      members: teamCMembers,
+      collapsed: team === 'TeamC'? false:true
+    }
+    teams.push(teamC);
+
+    let teamDMembers = employees.filter((employee)=>employee.teamName === 'TeamD');
+    let teamD = {
+      teamNo: 'TeamD',
+      members: teamDMembers,
+      collapsed: team === 'TeamD'? false:true
+    }
+    teams.push(teamD);
+
+    return teams;
+  }
+  const handleTeamClick = (e) => {
+    const groupData = group.map((g)=>g.teamNo===e.currentTarget.id
+      ?{...g, collapsed: !g.collapsed}
+      :g
+      )
+    setGroup(groupData);
+    setTeam(e.currentTarget.id);
+  }

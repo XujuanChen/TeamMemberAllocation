@@ -4,7 +4,11 @@ import Header from './Header';
 import Footer from './Footer';
 import employeeMember from './data';
 import Employees from './Employees';
+import GroupedTeamMembers from './GroupedTeamMembers';
+import Nav from './Nav';
+import NotFound from './NotFound';
 import { useState, useEffect } from "react";
+import {BrowserRouter as Router, Route, Routes} from 'react-router-dom';
 
 function App() {
   const [employees, setEmployees] = useState(JSON.parse(localStorage.getItem('employeeList')) || employeeMember);
@@ -15,14 +19,14 @@ function App() {
     setTeam(e.target.value);
   }
   const handleClick = (e) => {
-    const teamMemebers = employees.map(
+    const teamMemeberSelected = employees.map(
       (employee)=>employee.id === parseInt(e.currentTarget.id)
         ?(employee.teamName === team)
         ?{...employee, teamName: ''} 
         :{...employee, teamName:team}
         :employee
     ) 
-    setEmployees(teamMemebers);
+    setEmployees(teamMemeberSelected);
   }
   
   useEffect(()=>{
@@ -33,14 +37,29 @@ function App() {
   },[team]);
   
   return (
-    <main>
+    <Router>
+      <Nav />
+      <main>
       <Header team={team}
         teamCount={employees.filter((employee)=>employee.teamName === team).length}
         />
-      <Employees employees={employees} team={team} 
-        handleChange={handleChange} handleClick = {handleClick} />
+      <Routes>
+        <Route path='/'
+          element={<Employees employees={employees} team={team} 
+          handleChange={handleChange} handleClick = {handleClick} />}>
+        </Route>
+        <Route path='/GroupedTeamMembers'
+          element={<GroupedTeamMembers employees={employees} selectTeam={team} 
+          setTeam={setTeam} />}>
+        </Route>
+        <Route path='*'
+          element={<NotFound />}
+          >
+        </Route>
+      </Routes>
+      </main>
       <Footer />
-    </main>
+    </Router>
   );
 }
 

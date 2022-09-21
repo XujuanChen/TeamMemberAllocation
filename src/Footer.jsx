@@ -1,10 +1,10 @@
 const Footer = () => {
   return (
-    <footer className='container'>
-      <div className='row justify-content-center mt-3 mb-3'>
-        <div className='col-8'>
-          <h1>&copy;Team Member Allocation App {new Date().getFullYear()} </h1>
-        </div>
+    <footer>
+      <div className='justify-content-center mt-3 pt-3 pb-2 bg-dark text-white' >
+        
+        <h3>Team Member Allocation&copy; App {new Date().getFullYear()} </h3>
+        
       </div>
     </footer>
   )

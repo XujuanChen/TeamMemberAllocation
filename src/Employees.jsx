@@ -29,10 +29,12 @@ const Employees = ({ employees, team, handleChange, handleClick }) => {
                   ?<img src={maleProfile} alt='maleProfile' className='card-img-top'/>
                   :<img src={femaleProfile} alt='femaleProfile' className='card-img-top'/>
                 }
+
+                <img src={emp.img} />
                 
                 <div className='card-body'>
-                  <h5 className='card-title'>Full Name: {emp.fullName}</h5>
-                  <p className='card-text'><b>Designation: </b> {emp.designation}</p>
+                  <h5 className='card-title'>{emp.fullName}</h5>
+                  <p className='card-text'>{emp.designation}</p>
                 </div>
               </div>
             )
